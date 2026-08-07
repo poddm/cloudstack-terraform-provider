@@ -108,8 +108,8 @@ func resourceCloudStackDiskOffering() *schema.Resource {
 				Description: "Provisioning type used to create volumes. Values are thin, sparse and fat",
 				Type:        schema.TypeString,
 				Optional:    true,
+				Computed:    true,
 				ForceNew:    true,
-				Default:     "thin",
 				ValidateFunc: func(val interface{}, key string) (warns []string, errs []error) {
 					v := val.(string)
 					if v == "thin" || v == "sparse" || v == "fat" {
@@ -123,8 +123,8 @@ func resourceCloudStackDiskOffering() *schema.Resource {
 				Description: "The storage type of the disk offering. Values are local and shared",
 				Type:        schema.TypeString,
 				Optional:    true,
+				Computed:    true,
 				ForceNew:    true,
-				Default:     "shared",
 				ValidateFunc: func(val interface{}, key string) (warns []string, errs []error) {
 					v := val.(string)
 					if v == "local" || v == "shared" {
@@ -486,11 +486,6 @@ func resourceCloudStackDiskOfferingUpdate(d *schema.ResourceData, meta interface
 	_, err := cs.DiskOffering.UpdateDiskOffering(p)
 	if err != nil {
 		return fmt.Errorf("Error updating Disk Offering %s: %s", name, err)
-	}
-
-	_, err := cs.DiskOffering.UpdateDiskOffering(p)
-	if err != nil {
-		return err
 	}
 
 	return resourceCloudStackDiskOfferingRead(d, meta)
