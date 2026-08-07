@@ -293,6 +293,8 @@ func resourceCloudStackDiskOfferingCreate(d *schema.ResourceData, meta interface
 			items[i] = raw.(string)
 		}
 		p.SetZoneid(items)
+	} else {
+		p.SetZoneid([]string{"all"})
 	}
 
 	// storage qos
@@ -391,7 +393,7 @@ func resourceCloudStackDiskOfferingRead(d *schema.ResourceData, meta interface{}
 	} else {
 		d.Set("domain_id", []string{})
 	}
-	if r.Zoneid != "" {
+	if r.Zoneid != "" && r.Zoneid != "all" {
 		d.Set("zone_id", strings.Split(r.Zoneid, ","))
 	} else {
 		d.Set("zone_id", []string{})
@@ -457,6 +459,8 @@ func resourceCloudStackDiskOfferingUpdate(d *schema.ResourceData, meta interface
 			items[i] = raw.(string)
 		}
 		p.SetZoneid(strings.Join(items, ","))
+	} else {
+		p.SetZoneid("all")
 	}
 	if v, ok := d.GetOk("iops_read_rate"); ok {
 		p.SetIopsreadrate(int64(v.(int)))
