@@ -255,7 +255,7 @@ func serviceOfferingMergeCommonSchema(s1 map[string]schema.Attribute) map[string
 					PlanModifiers: []planmodifier.Int32{
 						int32planmodifier.RequiresReplace(),
 					},
-					Default: int32default.StaticInt32(0),
+					Default: int32default.StaticInt32(1),
 				},
 				"display": schema.BoolAttribute{
 					Description: "whether the GPU is presented as a display device to the guest VM",
