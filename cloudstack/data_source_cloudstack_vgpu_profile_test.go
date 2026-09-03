@@ -33,7 +33,7 @@ func TestAccVgpuProfileDataSource_basic(t *testing.T) {
 			{
 				Config: testVgpuProfileDataSourceConfig_basic,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("data.cloudstack_vgpu_profile.test", "name", "passthrough"),
+					resource.TestCheckResourceAttr("data.cloudstack_vgpu_profile.test", "name", "sim-8q"),
 				),
 			},
 		},
@@ -44,7 +44,7 @@ const testVgpuProfileDataSourceConfig_basic = `
 data "cloudstack_vgpu_profile" "test" {
   filter {
     name = "name"
-    value = "passthrough"
+    value = "sim-8q"
   }
 }
 `

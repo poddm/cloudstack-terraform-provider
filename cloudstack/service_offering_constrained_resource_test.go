@@ -296,7 +296,7 @@ const testAccServiceOfferingCustomConstrained_gpu = `
 data "cloudstack_vgpu_profile" "test" {
 	filter {
 		name  = "name"
-		value = "passthrough"
+		value = "sim-8q"
 	}
 }
 

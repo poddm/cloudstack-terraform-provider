@@ -34,6 +34,7 @@ func TestAccGpuCardDataSource_basic(t *testing.T) {
 				Config: testGpuCardDataSourceConfig_basic,
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttrSet("data.cloudstack_gpu_card.test", "id"),
+					resource.TestCheckResourceAttr("data.cloudstack_gpu_card.test", "name", "Simulator Graphics Card Pro"),
 				),
 			},
 		},
@@ -44,7 +45,7 @@ const testGpuCardDataSourceConfig_basic = `
 data "cloudstack_gpu_card" "test" {
   filter {
     name  = "keyword"
-    value = "NVIDIA"
+    value = "Simulator Graphics Card Pro"
   }
 }
 `
