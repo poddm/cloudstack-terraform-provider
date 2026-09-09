@@ -52,6 +52,7 @@ func resourceCloudStackDiskOffering() *schema.Resource {
 				Description: "The cache mode to use for this disk offering. Values are none, writeback or writethrough",
 				Type:        schema.TypeString,
 				Optional:    true,
+				Computed:    true,
 			},
 			"disk_size": {
 				Description: "The size of the disk offering in GB. When omitted the offering is created as customizable",
@@ -146,7 +147,7 @@ func resourceCloudStackDiskOffering() *schema.Resource {
 				Default:     true,
 			},
 			"zone_id": {
-				Description: "The IDs of the zones that this disk offering belongs to",
+				Description: "The IDs of the zones the disk offering is restricted to. Leave empty to make the offering available in all zones.",
 				Type:        schema.TypeList,
 				Optional:    true,
 				Elem: &schema.Schema{
@@ -458,6 +459,7 @@ func resourceCloudStackDiskOfferingUpdate(d *schema.ResourceData, meta interface
 		}
 		p.SetZoneid(strings.Join(items, ","))
 	} else {
+		// Empty config means all zones; send "all" so update clears any prior zone restriction.
 		p.SetZoneid("all")
 	}
 	if v, ok := d.GetOk("iops_read_rate"); ok {
