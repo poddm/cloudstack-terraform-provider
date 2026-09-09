@@ -55,7 +55,7 @@ func resourceCloudStackDiskOffering() *schema.Resource {
 				Computed:    true,
 			},
 			"disk_size": {
-				Description: "The size of the disk offering in GB. When omitted the offering is created as customizable",
+				Description: "The size of the disk offering in GB.",
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Computed:    true,
