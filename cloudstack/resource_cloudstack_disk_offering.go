@@ -235,7 +235,7 @@ func resourceCloudStackDiskOfferingCreate(d *schema.ResourceData, meta interface
 	name := d.Get("name").(string)
 	displayText := d.Get("display_text").(string)
 
-	// NewCreateDiskOfferingParams expects (displaytext, name) in that order
+	// Create a new parameter struct
 	p := cs.DiskOffering.NewCreateDiskOfferingParams(displayText, name)
 
 	if v, ok := d.GetOk("cache_mode"); ok {
