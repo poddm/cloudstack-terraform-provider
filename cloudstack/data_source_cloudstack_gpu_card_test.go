@@ -44,8 +44,8 @@ func TestAccGpuCardDataSource_basic(t *testing.T) {
 const testGpuCardDataSourceConfig_basic = `
 data "cloudstack_gpu_card" "test" {
   filter {
-    name  = "keyword"
-    value = "Simulator Graphics Card Pro"
+    name  = "device_name"
+    value = "Graphics Card Pro"
   }
 }
 `
